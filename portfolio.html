@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jorge Dev | Full Stack Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#20d3ee",
+          "background-light": "#f6f8f8",
+          "background-dark": "#0a0f11",
+          "accent-violet": "#8b5cf6",
+        },
+        fontFamily: {
+          "display": ["Inter", "sans-serif"]
+        },
+        borderRadius: {
+          "DEFAULT": "0.5rem",
+          "lg": "1rem",
+          "xl": "1.5rem",
+          "full": "9999px"
+        },
+      },
+    },
+  }
+</script>
+<style>
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hero-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(32, 211, 238, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+  }
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 2rem;
+  }
+  .marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: 2rem;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee:hover .marquee-content {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Mobile menu */
+  #mobile-menu {
+    display: none;
+  }
+  #mobile-menu.open {
+    display: flex;
+  }
+
+  /* Fade in on load */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+
+<!-- Sticky Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent-violet rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-background-dark text-xl font-bold">terminal</span>
+      </div>
+      <span class="text-xl font-bold tracking-tight dark:text-white uppercase">Jorge<span class="text-primary">Dev</span></span>
+    </div>
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="#projects">Proyectos</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="#tech">Stack</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">Sobre mí</a>
+      <a href="#contact" class="bg-primary text-background-dark px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-[0_0_20px_rgba(32,211,238,0.4)] transition-all">
+        Contacto
+      </a>
+    </div>
+    <button id="menu-btn" class="md:hidden text-white">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="flex-col md:hidden px-6 pb-6 gap-4 bg-background-dark/95 border-t border-white/5">
+    <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="#projects">Proyectos</a>
+    <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="#tech">Stack</a>
+    <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="#about">Sobre mí</a>
+    <a href="#contact" class="bg-primary text-background-dark px-6 py-2.5 rounded-full text-sm font-bold text-center">Contacto</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 hero-gradient overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-violet/10 rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+  </div>
+  <div class="relative z-10 max-w-5xl text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-8 fade-up delay-1">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+      </span>
+      Disponible para nuevos proyectos
+    </div>
+    <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[1.1] dark:text-white fade-up delay-2">
+      Full Stack Developer<br/>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-violet">con casi 3 años de experiencia</span>
+    </h1>
+    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed fade-up delay-3">
+      Desarrollador Full Stack versátil con más de 2 años de experiencia. He trabajado con <span class="text-white">Angular</span>, <span class="text-white">Node.js</span>, <span class="text-white">Java</span>, <span class="text-white">WordPress</span>, bases de datos, apps móviles y entornos Docker. Actualmente explorando <span class="text-white">IA</span> y <span class="text-white">Microsoft Power Platform</span>. Construyo soluciones completas de principio a fin.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up delay-4">
+      <a class="w-full sm:w-auto px-8 py-4 bg-primary text-background-dark rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(32,211,238,0.5)] transition-all group" href="#projects">
+        Ver proyectos
+        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+      </a>
+      <a href="#contact" class="w-full sm:w-auto px-8 py-4 glass text-white rounded-xl font-bold border border-white/10 hover:bg-white/5 transition-all">
+        Contactar
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="relative z-10 mt-20 w-full max-w-4xl grid grid-cols-3 gap-4">
+    <div class="glass rounded-2xl p-6 text-center">
+      <p class="text-3xl font-black text-primary">3</p>
+      <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Años de experiencia</p>
+    </div>
+    <div class="glass rounded-2xl p-6 text-center">
+      <p class="text-3xl font-black text-primary">10+</p>
+      <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Tecnologías</p>
+    </div>
+    <div class="glass rounded-2xl p-6 text-center">
+      <p class="text-3xl font-black text-primary">∞</p>
+      <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Ganas de aprender</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack Strip -->
+<section class="py-20 border-y border-white/5 bg-background-dark/50" id="tech">
+  <p class="text-center text-xs text-slate-500 uppercase tracking-widest mb-10">Mi stack tecnológico</p>
+  <div class="marquee">
+    <div class="marquee-content py-4">
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">javascript</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Angular</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">api</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Node.js</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">deployed_code</span>
+        <span class="text-xl font-bold uppercase tracking-widest">React</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">coffee</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Java</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">terminal</span>
+        <span class="text-xl font-bold uppercase tracking-widest">TypeScript</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">web</span>
+        <span class="text-xl font-bold uppercase tracking-widest">WordPress</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">database</span>
+        <span class="text-xl font-bold uppercase tracking-widest">PostgreSQL</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">storage</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Redis</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">dock</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Docker</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">phone_android</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Android</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">smart_toy</span>
+        <span class="text-xl font-bold uppercase tracking-widest">LangGraph</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">auto_awesome</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Power Platform</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">search</span>
+        <span class="text-xl font-bold uppercase tracking-widest">SEO</span>
+      </div>
+    </div>
+    <div aria-hidden="true" class="marquee-content py-4">
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">javascript</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Angular</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">api</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Node.js</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">deployed_code</span>
+        <span class="text-xl font-bold uppercase tracking-widest">React</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">coffee</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Java</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">terminal</span>
+        <span class="text-xl font-bold uppercase tracking-widest">TypeScript</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">web</span>
+        <span class="text-xl font-bold uppercase tracking-widest">WordPress</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">database</span>
+        <span class="text-xl font-bold uppercase tracking-widest">PostgreSQL</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">storage</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Redis</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">dock</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Docker</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">phone_android</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Android</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">smart_toy</span>
+        <span class="text-xl font-bold uppercase tracking-widest">LangGraph</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">auto_awesome</span>
+        <span class="text-xl font-bold uppercase tracking-widest">Power Platform</span>
+      </div>
+      <div class="flex items-center gap-4 px-8 text-slate-500 hover:text-primary transition-colors cursor-default">
+        <span class="material-symbols-outlined text-4xl">search</span>
+        <span class="text-xl font-bold uppercase tracking-widest">SEO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Showcase -->
+<section class="py-32 px-6" id="projects">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div>
+        <h2 class="text-4xl font-bold mb-4 dark:text-white">Proyectos destacados</h2>
+        <p class="text-slate-400 max-w-lg">Una selección de mis trabajos más recientes, desde aplicaciones empresariales hasta proyectos personales con IA.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Proyecto 1: Migración Angular -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="aspect-video mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative flex items-center justify-center">
+          <img src="img/icarus.png" alt="Gym Tracker App" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">Angular</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-accent-violet/20 text-accent-violet border border-accent-violet/20">TypeScript</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">Migración App Paneles Solares</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Migración completa de una aplicación empresarial de detección Y localización de problemas y defectos en las instalciones mediante analisis de imagenes termicas y RGB
+        </p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">work</span> Proyecto profesional
+          </span>
+        </div>
+      </div>
+
+      <!-- Proyecto 2: Gym Tracker -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="aspect-video mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative flex items-center justify-center">
+          <img src="img/gym.png" alt="Gym Tracker App" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">React</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300 border border-white/10">Firebase</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-accent-violet/20 text-accent-violet border border-accent-violet/20">TypeScript</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">Gym Tracker App</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Aplicación de seguimiento de entrenamiento con técnicas avanzadas como Top Sets, Back Offs y Drop Sets. Interfaz mobile-first con gestión completa de rutinas y progreso.
+        </p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">work</span> Proyecto en desarrollo
+          </span>
+        </div>
+      </div>
+
+      <!-- Proyecto 3: AI Agents -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="aspect-video mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative flex items-center justify-center">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent-violet/20"></div>
+          <span class="material-symbols-outlined text-6xl text-primary/60 relative z-10">smart_toy</span>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">LangGraph</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-accent-violet/20 text-accent-violet border border-accent-violet/20">Python</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300 border border-white/10">Ollama</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">Sistema Multi-Agente IA</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Sistema de agentes IA con LangGraph y Ollama: agente de desarrollo web y coach de nutrición con RAG sobre documentación profesional. Ejecución local de modelos LLM.
+        </p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm"></span>Proyecto en local
+          </span>
+        </div>
+        
+      </div>
+
+      <!-- Proyecto 4: Cafetería Los Arcos -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="aspect-video mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative">
+          <img src="img/losarcos.png" alt="Cafetería Los Arcos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">WordPress</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300 border border-white/10">Elementor</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-accent-violet/20 text-accent-violet border border-accent-violet/20">SEO</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">Cafetería Los Arcos</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Web completa para una cafetería local desarrollada con WordPress. Incluye carta digital, información del local y diseño optimizado para móvil y SEO.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="https://cafeterialosarcos.com/" target="_blank" class="text-xs font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all">
+            Ver web <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+  
+      <!-- Proyecto5: Módulo 11 -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="aspect-video mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative">
+          <img src="img/modulo11.png" alt="Módulo 11" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+        </div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">WordPress</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300 border border-white/10">Elementor</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-accent-violet/20 text-accent-violet border border-accent-violet/20">SEO</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">Módulo 11</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Web corporativa para empresa de cálculo y diseño estructural en madera y acero. Incluye portfolio de proyectos, blog, formulario de contacto y versión en dos idiomas.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="https://modulo11.com/" target="_blank" class="text-xs font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all">
+            Ver web <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Proyecto: App Android Junta de Castilla y León -->
+      <div class="glass group relative p-6 rounded-2xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-2">
+        <div class="mb-6 rounded-xl overflow-hidden bg-background-dark border border-white/5 relative h-48">
+  <img src="img/android.jpeg" alt="App Incendios Android" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"/>
+  <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+</div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-primary/20 text-primary border border-primary/20">Android</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-slate-800 text-slate-300 border border-white/10">Java</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 dark:text-white">App de Gestión de Incendios</h3>
+        <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+          Mantenimiento y actualización de app Android para la Junta de Castilla y León. Añadí nuevos tipos de tareas al sistema de asignación de incendios y actualicé la app a versiones modernas de Android.
+        </p>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-bold text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">work</span> Proyecto profesional
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="py-32 px-6 border-t border-white/5" id="about">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <div>
+      <h2 class="text-4xl font-bold mb-6 dark:text-white">Sobre mí</h2>
+      <p class="text-slate-400 leading-relaxed mb-6">
+        Soy Jorge Macías, desarrollador Full Stack con más de 2 años de experiencia profesional. Empecé mi carrera con prácticas en <span class="text-white">Hiberus</span>, formándome en Symfony, Drupal y Magento, y después estuve casi 3 años en <span class="text-white">Codesian Software Tech</span>, donde trabajé en proyectos reales muy variados: desde aplicaciones empresariales y móviles hasta landing pages con SEO, documentación de bases de datos para IA y configuración de entornos con Docker Compose.
+      </p>
+      <p class="text-slate-400 leading-relaxed mb-6">
+        A lo largo de estos años he tocado un stack amplio: <span class="text-white">Angular</span> y <span class="text-white">Node.js</span> como tecnologías principales, <span class="text-white">Java con Struts</span>, <span class="text-white">Android nativo y Capacitor</span> para móvil, bases de datos con PostgreSQL, Oracle y Redis, y <span class="text-white">WordPress</span> a nivel avanzado. Me considero un perfil versátil que se adapta a lo que el proyecto necesite.
+      </p>
+      <p class="text-slate-400 leading-relaxed mb-10">
+        Actualmente amplío mi stack con <span class="text-white">React</span>, <span class="text-white">Microsoft Power Platform</span> (Power Pages y Power Automate) e <span class="text-white">Inteligencia Artificial</span>, desarrollando sistemas multi-agente con LangGraph y Ollama. Me gusta aprender cosas nuevas y no me da miedo enfrentarme a tecnologías que no conozco.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium text-primary border border-primary/20">Angular</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Node.js</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Java</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Struts</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">TypeScript</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">React</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">JavaScript</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">WordPress</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">PostgreSQL</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Oracle</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Redis</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Docker</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Android</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Capacitor</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Firebase</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">SEO</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Symfony</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Power Pages</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium border border-white/10">Power Automate</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium text-accent-violet border border-accent-violet/20">LangGraph</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium text-accent-violet border border-accent-violet/20">Python</span>
+        <span class="px-4 py-2 glass rounded-full text-sm font-medium text-accent-violet border border-accent-violet/20">Ollama</span>
+      </div>
+    </div>
+    <!-- Photo placeholder -->
+    <div class="flex justify-center">
+      <div class="relative w-72 h-72 md:w-96 md:h-96">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent-violet/20 rounded-3xl blur-2xl"></div>
+        <div class="relative w-full h-full glass rounded-3xl flex flex-col items-center justify-center border border-white/10">
+          <img src="./img/foto.png" alt="Jorge Dev" class="w-full h-full object-cover rounded-3xl"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / CTA Section -->
+<section class="py-32 px-6" id="contact">
+  <div class="max-w-4xl mx-auto rounded-3xl p-12 bg-gradient-to-br from-primary/10 via-background-dark to-accent-violet/10 border border-white/5 text-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent-violet"></div>
+    <h2 class="text-4xl font-black mb-6 dark:text-white">¿Tienes un proyecto en mente?</h2>
+    <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
+     Estoy en búsqueda activa de empleo y también disponible para proyectos freelance o colaboraciones. Si buscas un desarrollador Full Stack con experiencia en Angular y Node.js, hablemos.
+    </p>
+    <form id="contact-form" action="https://formspree.io/f/xaqdppwy" method="POST" class="w-full max-w-lg mx-auto flex flex-col gap-4 mt-2">
+      <div class="flex flex-col sm:flex-row gap-4">
+        <input type="text" name="nombre" placeholder="Tu nombre" required
+          class="flex-1 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors text-sm"/>
+        <input type="email" name="email" placeholder="Tu email" required
+          class="flex-1 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors text-sm"/>
+      </div>
+      <textarea name="mensaje" placeholder="Cuéntame tu proyecto o propuesta..." rows="4" required
+        class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors text-sm resize-none"></textarea>
+      <button type="submit"
+        class="px-10 py-4 bg-primary text-background-dark rounded-xl font-bold hover:shadow-[0_0_40px_rgba(32,211,238,0.4)] transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">send</span>
+        Enviar mensaje
+      </button>
+      <p id="form-status" class="text-sm text-center text-slate-400 hidden"></p>
+    </form>
+    <div class="flex items-center justify-center gap-4 mt-6">
+      <a href="https://www.linkedin.com/in/jorge-macias-vera-879187236" target="_blank" class="w-12 h-12 glass flex items-center justify-center rounded-full hover:text-primary transition-colors border border-white/10">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="tel:+34637136930" class="w-12 h-12 glass flex items-center justify-center rounded-full hover:text-primary transition-colors border border-white/10">
+        <span class="material-symbols-outlined">phone</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 px-6 border-t border-white/5">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="flex items-center gap-2">
+      <div class="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
+        <span class="material-symbols-outlined text-background-dark text-sm font-bold">terminal</span>
+      </div>
+      <span class="text-sm font-bold tracking-tight dark:text-white">JORGEDEV <span class="text-slate-500 font-normal">© 2026</span></span>
+    </div>
+    <div class="flex items-center gap-8 text-slate-500 text-xs font-bold tracking-widest uppercase">
+      <a class="hover:text-primary transition-colors" href="https://www.linkedin.com/in/jorge-macias-vera-879187236" target="_blank">LinkedIn</a>
+    </div>
+    <p class="text-xs text-slate-600">Hecho con código, café y ganas.</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Formspree contact form
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Enviando...';
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          status.textContent = '✅ Mensaje enviado. ¡Te contactaré pronto!';
+          status.classList.remove('hidden', 'text-red-400');
+          status.classList.add('text-primary');
+          form.reset();
+        } else {
+          throw new Error();
+        }
+      } catch {
+        status.textContent = '❌ Error al enviar. Inténtalo de nuevo.';
+        status.classList.remove('hidden', 'text-primary');
+        status.classList.add('text-red-400');
+      }
+      btn.disabled = false;
+      btn.innerHTML = '<span class="material-symbols-outlined">send</span> Enviar mensaje';
+    });
+  }
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  // Close menu on link click
+  mobileMenu.que
